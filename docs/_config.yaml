@@ -1,7 +1,5 @@
-title: Flask Project Template
-description: A starter Flask, Jinja and SQLite project
-author: Digital Technologies Dept.
-
-# If development is true, guides will be shown
+title: lost pet tracker Project
+description: A system for letting people find ther lost pets
+author: Liam Mutch
 development: true
 picotheme: azure
