@@ -29,7 +29,7 @@ this is relevent because when peolle use this app they wont somthing that looks 
 
 ### Impact / Considerations
 
-Aesthetics will shape how users feel and interact with your lost pet tracker app. A clear friendly visual design will make the experience great 
+I will shape how users feel and interact with my lost pet tracker app. and have a clear friendly visual design will make the experience great 
 
 
 ## useability
@@ -56,7 +56,7 @@ this is relevent because if this does well and people want to use this in the fu
 
 ### Impact / Considerations
 
-future proofing will make it so it should be easy to updat in the near future and it wont expire this will be permenent
+I will make it easy to update in the near future and it wont expire this will be permenent or make it up to date so that people keep using it
 
 
 
@@ -70,7 +70,7 @@ this is relevent because the code that i should write should work so i have a go
 
 ### Impact / Considerations
 
-functionality will need to make it so ther is no bugs and the app runs smoothly
+I will need to make it so there is no bugs and the app runs smoothly
 
 
 
@@ -80,19 +80,32 @@ making it compatible with any device and easy with people who have disabilities
 
 ### Relevance to the System
 
-this is relevent because i can make it easy for color blind people to use and autistic people. all disabilites
+this is relevent because i will make it easy for color blind people to use and autistic people. all disabilites
 
 ### Impact / Considerations
 
-it should be easy to use for disaabled people and making it compatanle on all devices
+it should be easy to use for disaabled people and making it compatable on all devices
 
 
 
 # User Experience (UX) Principles
 
-## NAME OF UX PRINCIPLE 1
+## know your user
 
-Replace this text with a clear explanation of what the principle means.
+The single biggest UX mistake is assuming your users think like you do. Different people have different goals, skills, expectations, and patience levels.
+
+### Relevance to the System
+
+this is relevent because if i wanted everyone to uyse my app young, old and  mid age i should amke it so any age can use this app and is able to use it
+
+### Impact / Considerations
+
+in my project i will make it so all ages can you this what experiance they have with technoigie it will be very simple to use
+
+
+## Consistent and Clear
+
+most of the app should bve the ssame
 
 ### Relevance to the System
 
@@ -103,20 +116,7 @@ Replace this text with an explanation of why the principle is relevant to this p
 Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this principle.
 
 
-## NAME OF UX PRINCIPLE 2
-
-Replace this text with a clear explanation of what the principle means.
-
-### Relevance to the System
-
-Replace this text with an explanation of why the principle is relevant to this particular project.
-
-### Impact / Considerations
-
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this principle.
-
-
-## NAME OF UX PRINCIPLE 3
+##  Clear, Helpful Language
 
 Replace this text with a clear explanation of what the principle means.
 
