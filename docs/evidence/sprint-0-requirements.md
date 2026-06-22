@@ -25,11 +25,13 @@ seeing how the aperance of your project impacts the end user and its overall suc
 
 ### Relevance to the System
 
-this is relevent because when peolle use this app they wont somthing that looks like it took alot of time to design this app and they will use this app
+this is relevent because when peolle use this app they wont somthing that looks like it 
+took alot of time to design this app and they will use this app
 
 ### Impact / Considerations
 
-I will shape how users feel and interact with my lost pet tracker app. and have a clear friendly visual design will make the experience great 
+I will shape how users feel and interact with my lost pet tracker app. and have a clear 
+friendly visual design will make the experience great 
 
 
 ## useability
@@ -38,11 +40,13 @@ makes it easy to use and have a good user experiance
 
 ### Relevance to the System
 
-this is relevent because people will want to use this app and not need intructions they can just report they lost there pet
+this is relevent because people will want to use this app and not need intructions they 
+can just report they lost there pet
 
 ### Impact / Considerations
 
-useability will show the users the website is very easy to useand help users quickly find key features during urgent moments.
+useability will show the users the website is very easy to useand help users quickly find 
+key features during urgent moments.
 
 
 
@@ -52,11 +56,13 @@ make sure it is still avaible for the future years
 
 ### Relevance to the System
 
-this is relevent because if this does well and people want to use this in the future so they can find pets and everone can be happier
+this is relevent because if this does well and people want to use this in the future so they 
+can find pets and everone can be happier
 
 ### Impact / Considerations
 
-I will make it easy to update in the near future and it wont expire this will be permenent or make it up to date so that people keep using it
+I will make it easy to update in the near future and it wont expire this will be permenent or 
+make it up to date so that people keep using it
 
 
 
@@ -92,39 +98,46 @@ it should be easy to use for disaabled people and making it compatable on all de
 
 ## know your user
 
-The single biggest UX mistake is assuming your users think like you do. Different people have different goals, skills, expectations, and patience levels.
+The single biggest UX mistake is assuming your users think like you do. Different people have 
+different goals, skills, expectations, and patience levels.
 
 ### Relevance to the System
 
-this is relevent because if i wanted everyone to uyse my app young, old and  mid age i should amke it so any age can use this app and is able to use it
+this is relevent because if i wanted everyone to use my app young, old and  mid age i should amke 
+it so any age can use this app and is able to use it
 
 ### Impact / Considerations
 
-in my project i will make it so all ages can you this what experiance they have with technoigie it will be very simple to use
+in my project i am gonna make it so all ages can you this what experiance they have with technoigies 
+it will be very simple to use
 
 
 ## Consistent and Clear
 
-most of the app should bve the ssame
+most of the app should be the same it should be consistent the buttons should be easy to use
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the principle is relevant to this particular project.
+this is relevent because i want it to be easy to look at find the buttons to go to the next pages 
+i will make it look consistent.
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this principle.
+in my project i will make all the pages from my website are threw the website consisent making it 
+all have the same color veriations have the same text font threw it all
+making it also claer buttons to use and link to the correct pages
 
 
 ##  Clear, Helpful Language
-
-Replace this text with a clear explanation of what the principle means.
+button text and error messages should be simple to understand.
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the principle is relevant to this particular project.
+this is relevent because in my app i will need to make everthing simple to understand make the 
+error messages easy to read and explain whats wrong
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this principle.
+i will need to make sure that the buttons and lebels are specific and oriented so that the user 
+has no truoble understanding the buttons and what they do.
 
