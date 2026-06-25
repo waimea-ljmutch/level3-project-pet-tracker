@@ -5,9 +5,9 @@
 This is an app that lets people find or help find there lost pet
 
 The app has the following key features:
-- Feature one
-- Feature two
-- Feature three
+- you will be able to post if you have lost a pet
+- you will be able to see lost pets and try find them
+- you can message the owner of where you last saw it or have it
 - ...
 
 
