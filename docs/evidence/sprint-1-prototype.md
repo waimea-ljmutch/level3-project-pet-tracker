@@ -32,15 +32,15 @@ Replace this text with notes regarding the DB design.
 
 ### Required Data Input
 
-Replace this text with a description of what data will be input, and where / how it will be obtained.
+users will be able to input a username and a password aloing with with missing pet details.users can also send messages to users
 
 ### Required Data Output
 
-Replace this text with a description of the outputs for the system - what types of data will be displayed?
+my app will display missing pet reports, pet details, find pet reports, and user messages. Users can also view their own pet reports.
 
 ### Required Data Processing
 
-Replace this text with a description of how the data will be processed to achieve the desired output(s) - any processes / formulae?
+my app stores user accounts, pet reports, and messages in a database. It checks login details, saves new reports, and searches pet records based on user input.
 
 
 ## UI 'Flow'
