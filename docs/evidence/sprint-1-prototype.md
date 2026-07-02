@@ -25,14 +25,14 @@ Develop a design for the database and a UI prototype that simulates the key func
 
 ## Initial Database Design
 
-Replace this text with notes regarding the DB design.
+
 
 ![DB Design](screenshots/draw_sql.png)
 
 
 ### Required Data Input
 
-users will be able to input a username and a password aloing with with missing pet details.users can also send messages to users
+users will be able to input a username and a password along with missing pet details.users can also send messages to users
 
 ### Required Data Output
 
