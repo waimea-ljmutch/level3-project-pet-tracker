@@ -49,10 +49,9 @@ The first stage of prototyping was to explore how the UI might 'flow' between st
 
 This Figma demo shows the initial design for the UI 'flow':
 
-**FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT**
+https://design.penpot.app/#/view?file-id=f0485fb1-4e63-8165-8008-390913a71afb&page-id=f0485fb1-4e63-8165-8008-390913a71afc&section=interactions&frame-id=1cc6c8cb-c86a-8085-8008-39091a12d27f&index=0&share-id=4ff7ff5f-2875-80f9-8008-5a78ba967f34
 
 ### Testing
-
 Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
 
 ### Changes / Improvements
