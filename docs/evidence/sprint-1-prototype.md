@@ -52,14 +52,13 @@ This Figma demo shows the initial design for the UI 'flow':
 https://design.penpot.app/#/view?file-id=f0485fb1-4e63-8165-8008-390913a71afb&page-id=f0485fb1-4e63-8165-8008-390913a71afc&section=interactions&frame-id=1cc6c8cb-c86a-8085-8008-39091a12d27f&index=0&share-id=4ff7ff5f-2875-80f9-8008-5a78ba967f34
 
 ### Testing
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+i got feedback from an end user to change or seee if any changes needed ot be done
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+added more text and more options so they know what they can do
 
-*IMPROVED FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
-
+https://design.penpot.app/#/view?file-id=2be68822-842f-8175-8008-663431c710e4&page-id=f0485fb1-4e63-8165-8008-390913a71afc&section=interactions&frame-id=1cc6c8cb-c86a-8085-8008-39091a12d27f&index=0&share-id=2be68822-842f-8175-8008-6634d2cf4aa8
 
 ## Initial UI Prototype
 
