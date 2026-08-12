@@ -66,7 +66,7 @@ The next stage of prototyping was to develop the layout for each screen of the U
 
 This Figma demo shows the initial layout design for the UI:
 
-*FIGMA PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+https://design.penpot.app/#/view?file-id=81f57451-85cc-819d-8008-78257b4908cf&page-id=f0485fb1-4e63-8165-8008-390913a71afc&section=interactions&frame-id=1cc6c8cb-c86a-8085-8008-39091a12d27f&index=0&share-id=3be9e5e1-190f-8090-8008-7828599eaaff
 
 ### Testing
 
