@@ -1,15 +1,23 @@
 {#=====================================================
   Home page
 =====================================================#}
-
 {% extends 'pages/_base.jinja' %}
-
 
 {% block content %}
 
-    <h2>Login</h2>
+    <h2>Sign Up</h2>
 
-    <form method="post" action="/login">
+    <form method="post" action="/user">
+
+        <label>
+            Forename
+            <input type="text" name="forename" required>
+        </label>
+
+        <label>
+            Surname
+            <input type="text" name="surname" required>
+        </label>
 
         <label>
             Username
@@ -21,8 +29,7 @@
             <input type="password" name="password" required>
         </label>
 
-        <button>Login</button>
+        <button>Submit</button>
     </form>
 
 {% endblock %}
-

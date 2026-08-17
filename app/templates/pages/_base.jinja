@@ -26,15 +26,17 @@
 
     <header>
         <a href="/">
-            Notes Demo
+           pet tracker
         </a>
 
         <nav>
-            <a href="/">All Notes</a>
-            <a href="/login">Login</a>
-            <a href="/user/new">Sign-Up</a>
-            <a href="/">Link</a>
-            <a href="/">Link</a>
+            {% if session.logged_in %}
+                <a href ="/">Home</a>
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+                <a href="/user/new">Sign-Up</a>
+            {% endif %}
         </nav>
     </header>
 
