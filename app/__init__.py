@@ -26,27 +26,19 @@ app = Flask(__name__)
 @app.get("/")
 def show_notes():
     with connect_db() as db:
-        sql = """
-            SELECT id, title, body, pinned, created
-            FROM note
-            ORDER BY pinned DESC, created DESC
-        """
-        params = ()
-        notes = db.execute(sql, params).fetchall()
-
         flash("Test message")
         flash("Test SUCCESS message", "success")
         flash("Test INFO message", "info")
         flash("Test WARNING message", "warning")
         flash("Test ERROR message", "error")
 
-        return render_template("pages/note_list.jinja", notes=notes)
+        return render_template("pages/home_page.jinja",)
 # -----------------------------------------------------------
 # Signup page
 # -----------------------------------------------------------
 @app.get("/user/new")
 def show_signup_form():
-    return render_template("pages/user_form.jinja")
+    return render_template("pages/sign_up.jinja")
 
 # -----------------------------------------------------------
 # Login page
@@ -54,6 +46,13 @@ def show_signup_form():
 @app.get("/login")
 def show_login_form():
     return render_template("pages/login_page.jinja")
+
+# -----------------------------------------------------------
+# messages page
+# -----------------------------------------------------------
+@app.get("/messages")
+def show_message_form():
+    return render_template("pages/messages_page.jinja")
 
 # -----------------------------------------------------------
 # Handle user signup
@@ -86,41 +85,50 @@ def process_new_user():
         flash("Account created. Please login", "success")
         return redirect("/login")
     
-#-----------------------------------------------------------
-# handle user login
-#-----------------------------------------------------------
+# -----------------------------------------------------------
+# Handle user login
+# -----------------------------------------------------------
+
 @app.post("/login")
 def login_user():
     username = request.form.get("username", "").strip().lower()
     password = request.form.get("password", "").strip()
 
     with connect_db() as db:
-        sql ="""
-        SELECT id, username, firstname, lastname, password_hash,
-        FROM users
-        WHERE username=?
-    """
-    params =(username,)
-    user = db.execute(sql, params).fetchone()
+        sql = """
+            SELECT id, username, firstname, lastname, password_hash
+            FROM users
+            WHERE username=?
+        """
+        params = (username,)
+        user = db.execute(sql, params).fetchone()
 
-    if not user:
-        flash(f"Unkown user", "error")
-        return redirect("/login")
-    
-    if not check_password_hash(user["password_hash"], password):
-        flash(f"Incorrect password", "error")
-        return redirect("/login")
-    
+        if not user:
+            flash("Unknown user", "error")
+            return redirect("/login")
 
-    session["logged_in"] = True
-    session["user"] = {
-        "id":        user["id"],
-        "usernames": user["username"],
-        "firstname": user["firstname"],
-        "lastname":  user["lastname"],
-    }
+        if not check_password_hash(user["password_hash"], password):
+            flash("Incorrect password", "error")
+            return redirect("/login")
 
-    flash("login successful", "success")
+        session["logged_in"] = True
+        session["user"] = {
+            "id": user["id"],
+            "username": user["username"],
+            "firstname": user["firstname"],
+            "lastname": user["lastname"],
+        }
+
+        flash("Login successful", "success")
+        return redirect("/")
+
+# -----------------------------------------------------------
+# Handle user logout
+# -----------------------------------------------------------
+@app.get("/logout")
+def handle_logout():
+    session.clear()
+    flash(f"You have been logged out", "success")
     return redirect("/")
 
 #===========================================================

@@ -11,7 +11,7 @@
 
     --border-col:       #355;
 
-    --accent-col:       #e43;
+    --accent-col:       rgb(33, 116, 122);
 }
 
 
@@ -66,15 +66,15 @@ main > h2 {
 }
 
 
-/* Notes --------------------------------------------------*/
+/* Home --------------------------------------------------*/
 
-#notes {
+#Home {
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
     align-items: start;
 
-    .note {
+    .Home {
         padding: 1rem;
         box-shadow: 0 0.5rem 1rem #0004;
         border: 1px solid var(--border-col);
