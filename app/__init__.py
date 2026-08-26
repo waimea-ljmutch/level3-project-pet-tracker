@@ -41,6 +41,13 @@ def show_signup_form():
     return render_template("pages/sign_up.jinja")
 
 # -----------------------------------------------------------
+# report pets page
+# -----------------------------------------------------------
+@app.get("/")
+def show_pets_form():
+    return render_template("pages/report_pets.jinja")
+
+# -----------------------------------------------------------
 # Login page
 # -----------------------------------------------------------
 @app.get("/login")
