@@ -43,7 +43,7 @@ def show_signup_form():
 # -----------------------------------------------------------
 # report pets page
 # -----------------------------------------------------------
-@app.get("/")
+@app.get("/report/pet")
 def show_pets_form():
     return render_template("pages/report_pets.jinja")
 

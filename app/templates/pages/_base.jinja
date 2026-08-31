@@ -11,7 +11,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Notes Demo {% block title %}{% endblock %}</title>
+	<title> Lost pet tracker {% block title %}{% endblock %}</title>
 
     <link rel="icon" href="/static/images/note.svg">
 
@@ -33,6 +33,7 @@
             {% if session.logged_in %}
                 <a href ="/">Home</a>
                 <a href ="/messages">messages</a>
+                 <a href="/report/pet">report-pet</a>
                 <a href="/logout">Logout</a>
             {% else %}
                 <a href="/login">Login</a>
