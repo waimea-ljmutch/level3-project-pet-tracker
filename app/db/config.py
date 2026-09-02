@@ -35,7 +35,27 @@ class UserTable:
     """
 
 # Add more table classes here...
+class MessageTable:
 
+    NAME ="messages"
+
+    SCHEMA = """
+         CREATE TABLE messages (
+         id         INTEGER PRIMARY KEY AUTOINCREMENT,
+         pet        TEXT NOT NULL,
+         location   TEXT NOT NULL,
+         user_id    INTEGER NOT NULL,
+
+         FOREIGN KEY (user_id) REFERENCES user(id)
+         )
+    """
+    SEED_DATA = """
+        INSERT INTO messages (pet, location, user_id)
+            VALUES ("pancakes are awsome", "do you know the muffin man!", 1),
+                    ("waffles are better tho", "did you that labs cna be hunting dogs they are also very cute and fun dogs to hang with", 1),
+                    ("helldive!", "helldivers is a peak game for demicratic situations", 1),
+                    ("jack", "maccas is a pretty yummy place to go to when you wanna get good burgers", 1)
+    """
 
 
 #----------------------------------------------------------------------------
@@ -55,6 +75,7 @@ class UserTable:
 
 TABLES = [
     UserTable,
+    MessageTable,
     # Add more tables here...
 ]
 

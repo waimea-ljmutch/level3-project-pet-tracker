@@ -4,10 +4,27 @@
 
 {% extends 'pages/_base.jinja' %}
 
-
 {% block content %}
+  <h2>messages</h2>
+    <section class="messages">
+        {% for note in notes %}
 
-    <h2>messages</h2>
+            <article class="note {{ 'pinned' if note.pinned }}">
 
+                <header>
+                    <h3>{{ note.pet }}</h3>
+                    {{ "📌" if note.pinned }}
+                </header>
+
+                <p><a href="/note/{{ note.id }}">View note...</a></p>
+
+            </article>
+
+        {% else %}
+
+            <p>No Messages</p>
+
+        {% endfor %}
+    </section>
 {% endblock %}
 

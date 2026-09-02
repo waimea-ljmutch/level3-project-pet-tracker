@@ -26,13 +26,8 @@ app = Flask(__name__)
 @app.get("/")
 def show_notes():
     with connect_db() as db:
-        flash("Test message")
-        flash("Test SUCCESS message", "success")
-        flash("Test INFO message", "info")
-        flash("Test WARNING message", "warning")
-        flash("Test ERROR message", "error")
-
         return render_template("pages/home_page.jinja",)
+
 # -----------------------------------------------------------
 # Signup page
 # -----------------------------------------------------------
@@ -53,7 +48,21 @@ def show_pets_form():
 @app.get("/login")
 def show_login_form():
     return render_template("pages/login_page.jinja")
+#------------------------------------------------------------
+# Show all messages
+#------------------------------------------------------------
+@app.get("/")
+def show_messages():
+    with connect_db() as db:
+        sql = """
+            SELECT id, pet, location, description,
+            ORDER BY pinned DESC, created DESC
+        """
+        params = ()
+        notes = db.execute(sql, params).fetchall()
 
+        return render_template("pages/messages_page.jinja", )
+    
 # -----------------------------------------------------------
 # messages page
 # -----------------------------------------------------------
@@ -127,6 +136,28 @@ def login_user():
         }
 
         flash("Login successful", "success")
+        return redirect("/")
+
+#------------------------------------------------------------
+# New messages
+#------------------------------------------------------------
+@app.post("/message")
+# @login_required
+def process_new_message():
+    pet = request.form.get("pet", "").strip()
+    location = request.form.get("location", "").strip()
+
+    user_id = session["user"]["id"]
+
+    with connect_db() as db:
+        sql = """
+            INSERT INTO messages (pet, location, user_id)
+            VALUES (?, ?, ?)
+        """
+        params = (pet, location, user_id)
+        db.execute(sql, params)
+
+        flash("Message posted", "success")
         return redirect("/")
 
 # -----------------------------------------------------------

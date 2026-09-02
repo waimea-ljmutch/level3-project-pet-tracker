@@ -7,4 +7,22 @@
 
 <h2>report pets</h2>
 
+<form method="post" action="/message">
+
+        <label>
+            pet type
+            <input type="text" name="pet" required>
+        </label>
+
+        <label>
+            location last seen
+            <input type="text" name="location" required>
+        </label>
+        <label>
+            description
+            <textarea name="location" rows="2" required></textarea>
+        </label>
+
+        <button>send message</button>
+
 {% endblock %}

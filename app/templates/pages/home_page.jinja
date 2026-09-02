@@ -5,11 +5,19 @@
 
 
 {% block content %}
-
-    <h1 class="welcome">welcome to your home page</h1>
-
-    <a class="button home-page" href="/messages">Read Messages</a>
-    
-    <a class="button home-page" href="/report/pet"> report lost pets</a>
+        <span class="greeting">
+            {% if session.logged_in %}
+                Welcome, <strong>{{ session.user.firstname }}</strong>!
+            {% else %}
+                Welcome, guest!
+            {% endif %}
+        </s>
+<h1>Messages</h1>
+<nav>
+  {% if session.logged_in %}
+      <a class="button home-page" href="/messages">Read Messages</a>
+      <a class="button home-page" href="/report/pet">report lost pets</a>    
+  {% endif %}
+</nav>
 
 {% endblock %}
