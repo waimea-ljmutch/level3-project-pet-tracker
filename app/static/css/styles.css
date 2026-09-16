@@ -11,7 +11,7 @@
 
     --border-col:       #355;
 
-    --accent-col:       rgb(33, 116, 122);
+    --accent-col:       rgb(40, 152, 226);
 }
 
 
@@ -34,7 +34,14 @@ main {
     max-width: 40rem;
     margin-inline: auto;
     align-items: center;
-    padding: 1rem;
+    padding: 2rem;
+    padding: var(--padding);
+    border: solid;
+    background-color: #c5c7c5;
+    border-color: #000;
+    border-radius: 10px ;
+    border-width: 2px;
+    box-shadow: var(--drop-shadow);
 }
 
 
@@ -49,10 +56,18 @@ body > header {
 
     nav {
         display: flex;
-        gap: 2rem;
-
+        gap: 4rem;
+}
         a {
             color: var(--accent-col);
+            padding: 2rem;
+            padding: var(--padding);
+            border: solid;
+            background-color: #c5c7c5;
+            border-color: #000;
+            border-radius: 10px ;
+            border-width: 2px;
+            box-shadow: var(--drop-shadow);
         }
     }
 }
@@ -63,19 +78,19 @@ body > header {
 main > h2 {
     font-size: 3rem;
     text-align: center;
-    margin-block: 2rem;
+    margin-block: 5rem;
 }
 
 
 /* Home --------------------------------------------------*/
 
-#Home {
+#main > h1.home_page {
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
     align-items: start;
 
-    .Home {
+    main >h2 {
         padding: 1rem;
         box-shadow: 0 0.5rem 1rem #0004;
         border: 1px solid var(--border-col);

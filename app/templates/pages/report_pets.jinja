@@ -5,12 +5,12 @@
 
 {% block content %}
 
-<h2>report pets</h2>
+{# <h2>report pets</h2>
 
 <form method="post" action="/message">
 
         <label>
-            pet type
+            species    
             <input type="text" name="pet" required>
         </label>
 
@@ -18,11 +18,41 @@
             location last seen
             <input type="text" name="location" required>
         </label>
+
+         <label>
+            breed
+            <input type="text" name="breed" required>
+        </label>
+
         <label>
             description
             <textarea name="location" rows="2" required></textarea>
         </label>
 
-        <button>send message</button>
+        <button>send message</button> #}       
+<form method="post" action="/messages">
+    <h3>New Note</h3>
+
+    <label>
+        Title
+        <input name="title" type="text" placeholder="e.g. Feed cat" required>
+    </label>
+
+    <label>
+        Body
+        <textarea name="body" placeholder="e.g. Two scoops" required></textarea>
+    </label>
+
+    <label>
+        Category
+        <select name="category">
+            <option>Personal</option>
+            <option>Family</option>
+            <option>Work</option>
+        </select>
+    </label>
+
+    <button>Add Note</button>
+</form>
 
 {% endblock %}

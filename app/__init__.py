@@ -1,6 +1,6 @@
 #===========================================================
-# PROJECT NAME HERE
-# By YOUR NAME HERE
+# Lost pet tracker
+# By Liam Mutch
 #===========================================================
 
 from flask import Flask, request, session, render_template, flash, redirect, send_file, make_response
@@ -48,28 +48,71 @@ def show_pets_form():
 @app.get("/login")
 def show_login_form():
     return render_template("pages/login_page.jinja")
-#------------------------------------------------------------
-# Show all messages
-#------------------------------------------------------------
-@app.get("/")
-def show_messages():
+
+#-------------------------------------------------------------
+#
+#-------------------------------------------------------------
+@app.post("/report_pets")
+def add_note():
+    # Get form data
+    title    = request.form.get('title', '').strip()
+    body     = request.form.get('body', '').strip()
+    priority = request.form.get('priority', '3').strip()
+    tag_list = request.form.getlist('tags')
+    pinned   = bool(request.form.get('pinned'))
+
+    # Validate data
+    if not title:
+        flash("Title is required", "error")
+        return redirect("/note/new")
+
+    if len(title) > 40:
+        flash("Title is too long (max 40 chars)", "error")
+        return redirect("/note/new")
+
+    if not priority.isdigit():
+        flash("Priority should be numeric", "error")
+        return redirect("/note/new")
+
+    priority = int(priority)
+    if priority < 1 or priority > 5:
+        flash("Priority should be between 1 and 5", "error")
+        return redirect("/note/new")
+
+    # Escape text inputs
+    title = html.escape(title)
+    body = html.escape(body)
+
+    # Join tags
+    tags = ", ".join(tag_list)
+
+    # Add to the database
     with connect_db() as db:
         sql = """
-            SELECT id, pet, location, description,
-            ORDER BY pinned DESC, created DESC
+            INSERT INTO notes (title, body, priority, tags, pinned)
+            VALUES (?, ?, ?, ?, ?)
         """
-        params = ()
-        notes = db.execute(sql, params).fetchall()
+        params = (title, body, priority, tags, pinned)
+        db.execute(sql, params)
 
-        return render_template("pages/messages_page.jinja", )
-    
+        flash(f"Note added")
+        return redirect("/messages")  
+
 # -----------------------------------------------------------
-# messages page
+# Messages page - Show all notes
 # -----------------------------------------------------------
+
 @app.get("/messages")
-def show_message_form():
-    return render_template("pages/messages_page.jinja")
+def messages():
+    with connect_db() as db:
+        sql = """
+            SELECT id, title, body, priority, tags, pinned
+            FROM messages
+            ORDER BY pinned DESC, id DESC
+        """
+        notes = db.execute(sql).fetchall()
 
+    return render_template("pages/messages_page.jinja", notes=notes)
 # -----------------------------------------------------------
 # Handle user signup
 # -----------------------------------------------------------
