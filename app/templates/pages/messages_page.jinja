@@ -10,11 +10,12 @@
 {% for message in messages %}
 
     <div class="message">
-        <h3>{{ message["title"] }}</h3>
-
-        <p>{{ message["body"] }}</p>
-
-        <p>Category: {{ message["tags"] }}</p>
+        <h3>{{ message["pet name"] }}</h3>
+        <p>{{ message["pet type"] }}</p>
+        <p>{{ message["breed"] }}</p>
+        <p>{{ message["location"] }}</p>
+        <p>{{ message["date lost"] }}</p>
+        <p>{{ message["description"] }}</p>
     </div>
 
 {% else %}

@@ -40,24 +40,23 @@ class MessageTable:
     NAME ="messages"
 
     SCHEMA = """
-         CREATE TABLE messages (
-         id         INTEGER PRIMARY KEY AUTOINCREMENT,
-         title      TEXT NOT NULL,
-         body       TEXT NOT NULL,
-         priority   INTEGER NOT NULL,
-         tags       TEXT,
-         pinned     INTEGER NOT NULL,
-         user_id    INTEGER NOT NULL,
+        CREATE TABLE messages (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        pet_name TEXT NOT NULL,
+        pet_type TEXT NOT NULL,
+        breed TEXT,
+        location TEXT NOT NULL,
+        date_lost TEXT,
+        description TEXT NOT NULL,
+        user_id INTEGER NOT NULL
+        FOREIGN KEY (user_id) REFERENCES user(id)
 
-         FOREIGN KEY (user_id) REFERENCES user(id)
          )
     """
     SEED_DATA = """
-        INSERT INTO messages (title, body, priority, pinned, user_id)
-            VALUES ("pancakes are awsome", "do you know the muffin man!", 1, 0, 0),
-                    ("waffles are better tho", "did you that labs cna be hunting dogs they are also very cute and fun dogs to hang with", 1, 0, 0),
-                    ("helldive!", "helldivers is a peak game for demicratic situations", 1, 0, 0),
-                    ("jack", "maccas is a pretty yummy place to go to when you wanna get good burgers", 1, 0, 0)
+        INSERT INTO messages (pet_name, pet_type, breed, description, location, date_lost, user_id)
+        VALUES  ("Max", "Dog", "Labrador", "Black Labrador wearing a red collar", "Nelson", "2026-09-10", 0, )
+                ("Milo", "Cat", "Tabby", "Grey and white cat", "Richmond", "2026-09-12", 0, )
     """
 
 

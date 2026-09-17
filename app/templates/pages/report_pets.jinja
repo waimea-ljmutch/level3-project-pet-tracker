@@ -3,56 +3,41 @@
 =====================================================#}
 {% extends 'pages/_base.jinja' %}
 
-{% block content %}
-
-{# <h2>report pets</h2>
-
-<form method="post" action="/message">
-
-        <label>
-            species    
-            <input type="text" name="pet" required>
-        </label>
-
-        <label>
-            location last seen
-            <input type="text" name="location" required>
-        </label>
-
-         <label>
-            breed
-            <input type="text" name="breed" required>
-        </label>
-
-        <label>
-            description
-            <textarea name="location" rows="2" required></textarea>
-        </label>
-
-        <button>send message</button> #}       
+{% block content %}     
 <form method="post" action="/messages">
     <h3>New Note</h3>
 
     <label>
-        Title
-        <input name="title" type="text" placeholder="e.g. Feed cat" required>
+        pet name
+        <input name="pet_name" type="text" placeholder="e.g. jack" required>
     </label>
 
     <label>
-        Body
-        <textarea name="body" placeholder="e.g. Two scoops" required></textarea>
+        pet type
+        <textarea name="pet_type" placeholder="e.g. dog, cat, parrot" required></textarea>
+    </label> 
+
+    <label>
+        breed
+        <textarea name="breed " placeholder="e.g. girl" required></textarea>
     </label>
 
     <label>
-        Category
-        <select name="category">
-            <option>Personal</option>
-            <option>Family</option>
-            <option>Work</option>
-        </select>
+        location
+        <textarea name="location" placeholder="e.g. last seen the pet" required></textarea>
     </label>
 
-    <button>Add Note</button>
+    <label>
+        date lost
+        <textarea name="date_lost" placeholder="e.g. 10/05/2026" required></textarea>
+    </label>
+
+    <label>
+        description
+        <textarea name=" description" required></textarea>
+    </label>
+
+    <button>send details</button>
 </form>
 
 {% endblock %}

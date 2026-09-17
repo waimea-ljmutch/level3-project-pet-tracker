@@ -48,71 +48,21 @@ def show_pets_form():
 @app.get("/login")
 def show_login_form():
     return render_template("pages/login_page.jinja")
-
-#-------------------------------------------------------------
-#
-#-------------------------------------------------------------
-@app.post("/report_pets")
-def add_note():
-    # Get form data
-    title    = request.form.get('title', '').strip()
-    body     = request.form.get('body', '').strip()
-    priority = request.form.get('priority', '3').strip()
-    tag_list = request.form.getlist('tags')
-    pinned   = bool(request.form.get('pinned'))
-
-    # Validate data
-    if not title:
-        flash("Title is required", "error")
-        return redirect("/note/new")
-
-    if len(title) > 40:
-        flash("Title is too long (max 40 chars)", "error")
-        return redirect("/note/new")
-
-    if not priority.isdigit():
-        flash("Priority should be numeric", "error")
-        return redirect("/note/new")
-
-    priority = int(priority)
-    if priority < 1 or priority > 5:
-        flash("Priority should be between 1 and 5", "error")
-        return redirect("/note/new")
-
-    # Escape text inputs
-    title = html.escape(title)
-    body = html.escape(body)
-
-    # Join tags
-    tags = ", ".join(tag_list)
-
-    # Add to the database
-    with connect_db() as db:
-        sql = """
-            INSERT INTO notes (title, body, priority, tags, pinned)
-            VALUES (?, ?, ?, ?, ?)
-        """
-        params = (title, body, priority, tags, pinned)
-        db.execute(sql, params)
-
-        flash(f"Note added")
-        return redirect("/messages")  
-
 # -----------------------------------------------------------
-# Messages page - Show all notes
+# Messages page - Show all messages
 # -----------------------------------------------------------
 
 @app.get("/messages")
 def messages():
     with connect_db() as db:
         sql = """
-            SELECT id, title, body, priority, tags, pinned
+            SELECT id, pet_name, pet_type, breed, location, description, pinned
             FROM messages
             ORDER BY pinned DESC, id DESC
         """
-        notes = db.execute(sql).fetchall()
+        messages = db.execute(sql).fetchall()
 
-    return render_template("pages/messages_page.jinja", notes=notes)
+    return render_template("pages/messages_page.jinja", messages=messages)
 # -----------------------------------------------------------
 # Handle user signup
 # -----------------------------------------------------------
@@ -187,17 +137,21 @@ def login_user():
 @app.post("/message")
 # @login_required
 def process_new_message():
-    pet = request.form.get("pet", "").strip()
-    location = request.form.get("location", "").strip()
+    pet_name = request.form.get("pet name").strip()
+    pet_type = request.form.get("pet type").strip()
+    breed = request.form.get("breed").strip()
+    location = request.form.get("location").strip()
+    date_lost = request.form.get("date lost").strip()
+    description = request.form.get("description").strip()
 
     user_id = session["user"]["id"]
 
     with connect_db() as db:
         sql = """
-            INSERT INTO messages (pet, location, user_id)
+            INSERT INTO messages (pet_name, pet_type, breed, location, date_lost, description, user_id)
             VALUES (?, ?, ?)
         """
-        params = (pet, location, user_id)
+        params = (pet_name, pet_type, breed, location, date_lost, description, user_id)
         db.execute(sql, params)
 
         flash("Message posted", "success")
