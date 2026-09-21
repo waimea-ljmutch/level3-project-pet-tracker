@@ -9,13 +9,14 @@
 
 {% for message in messages %}
 
-    <div class="message">
-        <h3>{{ message["pet name"] }}</h3>
-        <p>{{ message["pet type"] }}</p>
-        <p>{{ message["breed"] }}</p>
-        <p>{{ message["location"] }}</p>
-        <p>{{ message["date lost"] }}</p>
-        <p>{{ message["description"] }}</p>
+    <div class="pet-message">
+        <h2>{{ message["pet_name"] }}</h2>
+
+    <p><strong>Pet type:</strong> {{ message.pet_type }}</p>
+    <p><strong>gender:</strong> {{ message.gender }}</p>
+    <p><strong>Location:</strong> {{ message.location }}</p>
+    <p><strong>Date lost:</strong> {{ message.date_lost }}</p>
+    <p><strong>Description:</strong> {{ message.description }}</p>
     </div>
 
 {% else %}

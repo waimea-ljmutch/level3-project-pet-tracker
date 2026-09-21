@@ -56,9 +56,9 @@ def show_login_form():
 def messages():
     with connect_db() as db:
         sql = """
-            SELECT id, pet_name, pet_type, breed, location, description, pinned
+            SELECT id, pet_name, pet_type, gender, date_lost, location, description
             FROM messages
-            ORDER BY pinned DESC, id DESC
+            ORDER BY id DESC
         """
         messages = db.execute(sql).fetchall()
 
@@ -131,32 +131,42 @@ def login_user():
         flash("Login successful", "success")
         return redirect("/")
 
-#------------------------------------------------------------
-# New messages
-#------------------------------------------------------------
-@app.post("/message")
-# @login_required
-def process_new_message():
-    pet_name = request.form.get("pet name").strip()
-    pet_type = request.form.get("pet type").strip()
-    breed = request.form.get("breed").strip()
-    location = request.form.get("location").strip()
-    date_lost = request.form.get("date lost").strip()
-    description = request.form.get("description").strip()
+# -----------------------------------------------------------
+# Report a lost pet
+# -----------------------------------------------------------
+@app.post("/report_pets")
+def process_new_pet():
+
+    pet_name = request.form.get("pet_name", "").strip()
+    pet_type = request.form.get("pet_type", "").strip()
+    gender = request.form.get("gender", "").strip()
+    location = request.form.get("location", "").strip()
+    date_lost = request.form.get("date_lost", "").strip()
+    description = request.form.get("description", "").strip()
 
     user_id = session["user"]["id"]
 
     with connect_db() as db:
         sql = """
-            INSERT INTO messages (pet_name, pet_type, breed, location, date_lost, description, user_id)
-            VALUES (?, ?, ?)
+            INSERT INTO messages
+            (pet_name, pet_type, gender, location, date_lost, description, user_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
         """
-        params = (pet_name, pet_type, breed, location, date_lost, description, user_id)
+
+        params = (
+            pet_name,
+            pet_type,
+            gender,
+            location,
+            date_lost,
+            description,
+            user_id
+        )
+
         db.execute(sql, params)
 
-        flash("Message posted", "success")
-        return redirect("/")
-
+    flash("Pet report posted", "success")
+    return redirect("/messages")
 # -----------------------------------------------------------
 # Handle user logout
 # -----------------------------------------------------------

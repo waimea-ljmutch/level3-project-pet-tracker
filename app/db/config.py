@@ -44,19 +44,19 @@ class MessageTable:
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         pet_name TEXT NOT NULL,
         pet_type TEXT NOT NULL,
-        breed TEXT,
+        gender TEXT,
         location TEXT NOT NULL,
         date_lost TEXT,
         description TEXT NOT NULL,
-        user_id INTEGER NOT NULL
+        user_id INTEGER NOT NULL,
         FOREIGN KEY (user_id) REFERENCES user(id)
 
          )
     """
     SEED_DATA = """
-        INSERT INTO messages (pet_name, pet_type, breed, description, location, date_lost, user_id)
-        VALUES  ("Max", "Dog", "Labrador", "Black Labrador wearing a red collar", "Nelson", "2026-09-10", 0, )
-                ("Milo", "Cat", "Tabby", "Grey and white cat", "Richmond", "2026-09-12", 0, )
+        INSERT INTO messages (pet_name, pet_type, gender, description, location, date_lost, user_id)
+        VALUES  ("Max", "Dog", "girl", "Black Labrador wearing a red collar", "Nelson", "2026-09-10", 0),
+                ("Milo", "Cat", "boy", "Grey and white cat", "Richmond", "2026-09-12", 0)
     """
 
 

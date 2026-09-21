@@ -4,7 +4,7 @@
 {% extends 'pages/_base.jinja' %}
 
 {% block content %}     
-<form method="post" action="/messages">
+<form method="post" action="/report_pets">
     <h3>New Note</h3>
 
     <label>
@@ -18,8 +18,8 @@
     </label> 
 
     <label>
-        breed
-        <textarea name="breed " placeholder="e.g. girl" required></textarea>
+        gender
+        <textarea name="gender" placeholder="e.g. girl" required></textarea>
     </label>
 
     <label>
