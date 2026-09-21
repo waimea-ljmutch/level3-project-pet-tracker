@@ -144,6 +144,10 @@ def process_new_pet():
     date_lost = request.form.get("date_lost", "").strip()
     description = request.form.get("description", "").strip()
 
+    print("=============================================")
+    print(gender)
+    print(description)
+    
     user_id = session["user"]["id"]
 
     with connect_db() as db:
