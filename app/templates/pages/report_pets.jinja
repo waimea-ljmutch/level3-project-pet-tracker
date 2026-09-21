@@ -4,7 +4,7 @@
 {% extends 'pages/_base.jinja' %}
 
 {% block content %}     
-<form method="post" action="/report_pets">
+<form method="post" action="/report/pet">
     <h3>New Note</h3>
 
     <label>
@@ -14,27 +14,32 @@
 
     <label>
         pet type
-        <textarea name="pet_type" placeholder="e.g. dog, cat, parrot" required></textarea>
+        <input name="pet_type" placeholder="e.g. dog, cat, parrot" required>
     </label> 
 
     <label>
         gender
-        <textarea name="gender" placeholder="e.g. girl" required></textarea>
-    </label>
 
-    <label>
-        location
-        <textarea name="location" placeholder="e.g. last seen the pet" required></textarea>
-    </label>
-
-    <label>
-        date lost
-        <textarea name="date_lost" placeholder="e.g. 10/05/2026" required></textarea>
+        <select name="gender" required>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Unknown</option>
+        </select>
     </label>
 
     <label>
         description
-        <textarea name="description" required></textarea>
+        <textarea name="description"  placeholder="Decribe your pet..." required></textarea>
+    </label>
+
+    <label>
+        date lost
+        <input name="date_lost" type="date" max="{{ today }}"required></textarea>
+    </label>
+
+    <label>
+        location last seen
+        <textarea name="location" placeholder="Describe where your saw them last..." required></textarea>
     </label>
 
     <button>send details</button>

@@ -6,6 +6,7 @@
 from flask import Flask, request, session, render_template, flash, redirect, send_file, make_response
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
+from datetime import date
 from os import getenv
 from io import BytesIO
 import html
@@ -36,13 +37,6 @@ def show_signup_form():
     return render_template("pages/sign_up.jinja")
 
 # -----------------------------------------------------------
-# report pets page
-# -----------------------------------------------------------
-@app.get("/report/pet")
-def show_pets_form():
-    return render_template("pages/report_pets.jinja")
-
-# -----------------------------------------------------------
 # Login page
 # -----------------------------------------------------------
 @app.get("/login")
@@ -56,13 +50,40 @@ def show_login_form():
 def messages():
     with connect_db() as db:
         sql = """
-            SELECT id, pet_name, pet_type, gender, date_lost, location, description
+            SELECT id, pet_name, pet_type, gender, date_lost, location, description, user_id
             FROM messages
             ORDER BY id DESC
         """
         messages = db.execute(sql).fetchall()
 
     return render_template("pages/messages_page.jinja", messages=messages)
+
+# -----------------------------------------------------------
+# Message delete handling
+# -----------------------------------------------------------
+@app.get(f"/message/<int:id>/delete")
+@login_required
+def process_delete_message(id):
+    with connect_db() as db:
+        sql = """
+            SELECT user_id FROM messages WHERE id=?
+        """
+        params = (id,)
+        message = db.execute(sql, params).fetchone()
+
+        if message and message["user_id"] == session["user"]["id"]:
+
+            sql = """
+                DELETE FROM messages WHERE id=?
+            """
+            params = (id,)
+            db.execute(sql, params)
+
+            flash("Message deleted", "success")
+            return redirect("/messages")
+
+        flash("Invalid message", "error")
+        return redirect("/messages")
 # -----------------------------------------------------------
 # Handle user signup
 # -----------------------------------------------------------
@@ -132,9 +153,17 @@ def login_user():
         return redirect("/")
 
 # -----------------------------------------------------------
+# report pets page
+# -----------------------------------------------------------
+@app.get("/report/pet")
+def show_pets_form():
+    today = date.today().isoformat()
+    return render_template("pages/report_pets.jinja", today=today)
+
+# -----------------------------------------------------------
 # Report a lost pet
 # -----------------------------------------------------------
-@app.post("/report_pets")
+@app.post("/report/pet")
 def process_new_pet():
 
     pet_name = request.form.get("pet_name", "").strip()

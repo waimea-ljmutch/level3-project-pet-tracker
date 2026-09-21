@@ -19,6 +19,13 @@
     <p><strong>Description:</strong> {{ message.description }}</p>
     </div>
 
+    {% if session["logged_in"] and message["user_id"] == session["user"]["id"] %}
+    <a href="/message/{{ message['id'] }}/delete"
+        onclick="return confirm('Do you really want to delete this report?')"
+    >   <button type="button">Delete</button>
+    </a>
+    {% endif %}
+
 {% else %}
 
     <p>No pets have been reported yet.</p>
