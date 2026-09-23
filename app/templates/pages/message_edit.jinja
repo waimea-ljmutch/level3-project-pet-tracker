@@ -1,0 +1,43 @@
+{#=====================================================
+  Message Edit page
+=====================================================#}
+
+{% extends 'pages/_base.jinja' %}
+
+
+{% block content %}
+
+<h2>Edit Pet Report</h2>
+
+<form method="post" action="/message/{{ message['id'] }}/update">
+
+    <label>
+        Pet name:
+        <input type="text" name="pet_name" value="{{ message['pet_name'] }}" required>
+    </label>
+    <label>
+        Pet type:
+        <input type="text" name="pet_type" value="{{ message['pet_type'] }}" required>
+    </label>
+    <label>
+        Gender:
+        <input type="text" name="gender" value="{{ message['gender'] }}" required>
+    </label>
+    <label>
+        Location last seen:
+        <textarea name="location" required>{{ message['location'] }} </textarea>
+    </label>
+    <label>
+        Date lost:
+        <input type="text" name="date_lost" value="{{ message['date_lost'] }}" required>
+    </label>
+    <label>
+        Description:
+        <textarea name="description" required>{{ message['description'] }}</textarea>
+    </label>
+
+    <button type="submit">Update Message</button>
+
+</form>
+
+{% endblock %}

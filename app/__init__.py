@@ -50,11 +50,24 @@ def show_login_form():
 def messages():
     with connect_db() as db:
         sql = """
-            SELECT id, pet_name, pet_type, gender, date_lost, location, description, user_id
+            SELECT
+                messages.id,
+                messages.pet_name,
+                messages.pet_type,
+                messages.gender,
+                messages.date_lost,
+                messages.location,
+                messages.description,
+                messages.user_id,
+                users.firstname,
+                users.lastname,
+                users.username
             FROM messages
-            ORDER BY id DESC
+            JOIN users ON messages.user_id = users.id
+            ORDER BY messages.id DESC
         """
-        messages = db.execute(sql).fetchall()
+        params = ()
+        messages = db.execute(sql,params).fetchall()
 
     return render_template("pages/messages_page.jinja", messages=messages)
 
@@ -84,6 +97,58 @@ def process_delete_message(id):
 
         flash("Invalid message", "error")
         return redirect("/messages")
+
+# -----------------------------------------------------------
+# Message edit page
+# -----------------------------------------------------------
+@app.get(f"/message/<int:id>/edit")
+@login_required
+def show_edit_message_form(id):
+    with connect_db() as db:
+        sql = """
+            SELECT id, pet_name, pet_type, gender, location, date_lost, description, user_id FROM messages WHERE id=?
+        """
+        params = (id,)
+        message = db.execute(sql, params).fetchone()
+
+        if message and message["user_id"] == session["user"]["id"]:
+            return render_template("pages/message_edit.jinja", message=message)
+
+        flash("Invalid message", "error")
+        return redirect("/messages")
+    
+# -----------------------------------------------------------
+# Handle new message
+# -----------------------------------------------------------
+@app.post("/message/<int:id>/update")
+@login_required
+def process_edited_message(id):
+    pet_name = request.form.get("pet_name", "").strip()
+    pet_type = request.form.get("pet_type", "").strip()
+    gender = request.form.get("gender", "").strip()
+    location = request.form.get("location", "").strip()
+    date_lost = request.form.get("date_lost", "").strip()
+    description = request.form.get("description", "").strip()
+
+    user_id = session["user"]["id"]
+
+    with connect_db() as db:
+        sql = """
+            UPDATE messages SET
+                pet_name = ?,
+                pet_type = ?,
+                gender = ?,
+                location = ?,
+                date_lost = ?,
+                description = ?
+            WHERE id = ? AND user_id = ?
+        """
+        params = (pet_name, pet_type, gender, location, date_lost, description, id, user_id)
+        db.execute(sql, params)
+
+        flash("Message updated", "success")
+        return redirect("/messages")
+    
 # -----------------------------------------------------------
 # Handle user signup
 # -----------------------------------------------------------
