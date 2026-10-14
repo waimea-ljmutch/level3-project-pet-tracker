@@ -50,8 +50,7 @@ class MessageTable:
         description TEXT NOT NULL,
         user_id INTEGER NOT NULL,
         FOREIGN KEY (user_id) REFERENCES user(id)
-
-         )
+        )
     """
     SEED_DATA = """
         INSERT INTO messages (pet_name, pet_type, gender, description, location, date_lost, user_id)

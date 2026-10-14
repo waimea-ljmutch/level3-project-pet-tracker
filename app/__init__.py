@@ -42,6 +42,7 @@ def show_signup_form():
 @app.get("/login")
 def show_login_form():
     return render_template("pages/login_page.jinja")
+    
 # -----------------------------------------------------------
 # Messages page - Show all messages
 # -----------------------------------------------------------
@@ -74,7 +75,7 @@ def messages():
 # -----------------------------------------------------------
 # Message delete handling
 # -----------------------------------------------------------
-@app.get(f"/message/<int:id>/delete")
+@app.get(f"/message/<int:id>/delete") 
 @login_required
 def process_delete_message(id):
     with connect_db() as db:
@@ -97,7 +98,7 @@ def process_delete_message(id):
 
         flash("Invalid message", "error")
         return redirect("/messages")
-
+    
 # -----------------------------------------------------------
 # Message edit page
 # -----------------------------------------------------------
@@ -160,7 +161,7 @@ def process_new_user():
     password = request.form.get("password", "").strip()
 
     with connect_db() as db:
-        sql = "SELECT id FROM users WHERE username=?"
+        sql = "SELECT id FROM users WHERE use=?"
         params = (username,)
         user = db.execute(sql, params).fetchone()
 
@@ -179,6 +180,15 @@ def process_new_user():
 
         flash("Account created. Please login", "success")
         return redirect("/login")
+    
+# -----------------------------------------------------------
+# Handle user logout
+# -----------------------------------------------------------
+@app.get("/logout")
+def handle_logout():
+    session.clear()
+    flash(f"You have been logged out", "success")
+    return redirect("/")
     
 # -----------------------------------------------------------
 # Handle user login
@@ -265,14 +275,6 @@ def process_new_pet():
 
     flash("Pet report posted", "success")
     return redirect("/messages")
-# -----------------------------------------------------------
-# Handle user logout
-# -----------------------------------------------------------
-@app.get("/logout")
-def handle_logout():
-    session.clear()
-    flash(f"You have been logged out", "success")
-    return redirect("/")
 
 #===========================================================
 # Configure the app
