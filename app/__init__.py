@@ -44,86 +44,86 @@ def show_login_form():
     return render_template("pages/login_page.jinja")
     
 # -----------------------------------------------------------
-# Messages page - Show all messages
+#posts page - Show all posts
 # -----------------------------------------------------------
 
-@app.get("/messages")
-def messages():
+@app.get("/posts")
+def posts():
     with connect_db() as db:
         sql = """
             SELECT
-                messages.id,
-                messages.pet_name,
-                messages.pet_type,
-                messages.gender,
-                messages.date_lost,
-                messages.location,
-                messages.description,
-                messages.user_id,
+                posts.id,
+                posts.pet_name,
+                posts.pet_type,
+                posts.gender,
+                posts.date_lost,
+                posts.location,
+                posts.description,
+                posts.user_id,
                 users.firstname,
                 users.lastname,
                 users.username
-            FROM messages
-            JOIN users ON messages.user_id = users.id
-            ORDER BY messages.id DESC
+            FROM posts
+            JOIN users ON posts.user_id = users.id
+            ORDER BY posts.id DESC
         """
         params = ()
-        messages = db.execute(sql,params).fetchall()
+        posts = db.execute(sql,params).fetchall()
 
-    return render_template("pages/messages_page.jinja", messages=messages)
+    return render_template("pages/post_page.jinja", posts=posts)
 
 # -----------------------------------------------------------
 # Message delete handling
 # -----------------------------------------------------------
-@app.get(f"/message/<int:id>/delete") 
+@app.get(f"/post/<int:id>/delete") 
 @login_required
-def process_delete_message(id):
+def process_delete_post(id):
     with connect_db() as db:
         sql = """
-            SELECT user_id FROM messages WHERE id=?
+            SELECT user_id FROM posts WHERE id=?
         """
         params = (id,)
-        message = db.execute(sql, params).fetchone()
+        post = db.execute(sql, params).fetchone()
 
-        if message and message["user_id"] == session["user"]["id"]:
+        if post and post["user_id"] == session["user"]["id"]:
 
             sql = """
-                DELETE FROM messages WHERE id=?
+                DELETE FROM posts WHERE id=?
             """
             params = (id,)
             db.execute(sql, params)
 
-            flash("Message deleted", "success")
-            return redirect("/messages")
+            flash("post deleted", "success")
+            return redirect("/posts")
 
-        flash("Invalid message", "error")
-        return redirect("/messages")
+        flash("Invalid post", "error")
+        return redirect("pages/post_page.jinja")
     
 # -----------------------------------------------------------
 # Message edit page
 # -----------------------------------------------------------
-@app.get(f"/message/<int:id>/edit")
+@app.get(f"/post/<int:id>/edit")
 @login_required
 def show_edit_message_form(id):
     with connect_db() as db:
         sql = """
-            SELECT id, pet_name, pet_type, gender, location, date_lost, description, user_id FROM messages WHERE id=?
+            SELECT id, pet_name, pet_type, gender, location, date_lost, description, user_id FROM posts WHERE id=?
         """
         params = (id,)
-        message = db.execute(sql, params).fetchone()
+        post = db.execute(sql, params).fetchone()
 
-        if message and message["user_id"] == session["user"]["id"]:
-            return render_template("pages/message_edit.jinja", message=message)
+        if post and post["user_id"] == session["user"]["id"]:
+            return render_template("pages/post_edit.jinja", post=post)
 
-        flash("Invalid message", "error")
-        return redirect("/messages")
+        flash("Invalid post", "error")
+        return redirect("/posts")
     
 # -----------------------------------------------------------
-# Handle new message
+# Handle new post
 # -----------------------------------------------------------
-@app.post("/message/<int:id>/update")
+@app.post("/post/<int:id>/update")
 @login_required
-def process_edited_message(id):
+def process_edited_post(id):
     pet_name = request.form.get("pet_name", "").strip()
     pet_type = request.form.get("pet_type", "").strip()
     gender = request.form.get("gender", "").strip()
@@ -135,7 +135,7 @@ def process_edited_message(id):
 
     with connect_db() as db:
         sql = """
-            UPDATE messages SET
+            UPDATE posts SET
                 pet_name = ?,
                 pet_type = ?,
                 gender = ?,
@@ -147,8 +147,8 @@ def process_edited_message(id):
         params = (pet_name, pet_type, gender, location, date_lost, description, id, user_id)
         db.execute(sql, params)
 
-        flash("Message updated", "success")
-        return redirect("/messages")
+        flash("Post updated", "success")
+        return redirect("/posts")
     
 # -----------------------------------------------------------
 # Handle user signup
@@ -161,7 +161,7 @@ def process_new_user():
     password = request.form.get("password", "").strip()
 
     with connect_db() as db:
-        sql = "SELECT id FROM users WHERE use=?"
+        sql = "SELECT id FROM users WHERE username=?"
         params = (username,)
         user = db.execute(sql, params).fetchone()
 
@@ -256,7 +256,7 @@ def process_new_pet():
 
     with connect_db() as db:
         sql = """
-            INSERT INTO messages
+            INSERT INTO posts
             (pet_name, pet_type, gender, location, date_lost, description, user_id)
             VALUES (?, ?, ?, ?, ?, ?, ?)
         """
@@ -274,7 +274,7 @@ def process_new_pet():
         db.execute(sql, params)
 
     flash("Pet report posted", "success")
-    return redirect("/messages")
+    return redirect("/posts")
 
 #===========================================================
 # Configure the app

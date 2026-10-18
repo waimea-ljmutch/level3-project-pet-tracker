@@ -1,0 +1,45 @@
+{#=====================================================
+  Home page
+=====================================================#}
+
+{% extends 'pages/_base.jinja' %}
+
+{% block content %}
+<h2>Posts</h2>
+
+{% for post in posts %}
+
+    <div class="pet-post">
+        <h2>{{ post["pet_name"] }}</h2>
+
+    <p><strong>Pet type:</strong> {{ post.pet_type }}</p>
+    <p><strong>gender:</strong> {{ post.gender }}</p>
+    <p><strong>Location:</strong> {{ post.location }}</p>
+    <p><strong>Date lost:</strong> {{ post.date_lost }}</p>
+    <p><strong>Description:</strong> {{ post.description }}</p>
+    </div>
+
+    <p class="author">Posted by <strong>{{ post.firstname }} {{ post.lastname }}</strong> ({{ post.username }})</p>
+    
+{% if session["logged_in"] and post["user_id"] == session["user"]["id"] %}
+    <a href="/post/{{ post['id'] }}/delete"
+        onclick="return confirm('Do you really want to delete this report?')"
+    >   <button type="button">Delete</button>
+    </a>
+    <a href="/post/{{ post['id'] }}/edit"  
+    > <button type="button">edit</button>
+    <i data-lucide="pen"></i>
+    </a>
+   
+{% endif %}
+
+</div>
+{% else %}
+
+    <p>No pets have been reported yet.</p>
+
+{% endfor %}
+
+
+{% endblock %}
+

@@ -1,0 +1,43 @@
+{#=====================================================
+ post Edit page
+=====================================================#}
+
+{% extends 'pages/_base.jinja' %}
+
+
+{% block content %}
+
+<h2>Edit Pet Report</h2>
+
+<form method="post" action="/post/{{ post['id'] }}/update">
+
+    <label>
+        Pet name:
+        <input type="text" name="pet_name" value="{{ post['pet_name'] }}" required>
+    </label>
+    <label>
+        Pet type:
+        <input type="text" name="pet_type" value="{{ post['pet_type'] }}" required>
+    </label>
+    <label>
+        Gender:
+        <input type="text" name="gender" value="{{ post['gender'] }}" required>
+    </label>
+    <label>
+        Location last seen:
+        <textarea name="location" required>{{ post['location'] }} </textarea>
+    </label>
+    <label>
+        Date lost:
+        <input type="text" name="date_lost" value="{{ post['date_lost'] }}" required>
+    </label>
+    <label>
+        Description:
+        <textarea name="description" required>{{ post['description'] }}</textarea>
+    </label>
+
+    <button type="submit">Update post</button>
+
+</form>
+
+{% endblock %}

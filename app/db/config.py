@@ -35,12 +35,12 @@ class UserTable:
     """
 
 # Add more table classes here...
-class MessageTable:
+class PostTable:
 
-    NAME ="messages"
+    NAME ="posts"
 
     SCHEMA = """
-        CREATE TABLE messages (
+        CREATE TABLE posts (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         pet_name TEXT NOT NULL,
         pet_type TEXT NOT NULL,
@@ -53,7 +53,7 @@ class MessageTable:
         )
     """
     SEED_DATA = """
-        INSERT INTO messages (pet_name, pet_type, gender, description, location, date_lost, user_id)
+        INSERT INTO posts (pet_name, pet_type, gender, description, location, date_lost, user_id)
         VALUES  ("Max", "Dog", "girl", "Black Labrador wearing a red collar", "Nelson", "2026-09-10", 0),
                 ("Milo", "Cat", "boy", "Grey and white cat", "Richmond", "2026-09-12", 0)
     """
@@ -76,7 +76,7 @@ class MessageTable:
 
 TABLES = [
     UserTable,
-    MessageTable
+    PostTable
     # Add more tables here...
 ]
 
