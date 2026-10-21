@@ -21,45 +21,45 @@ Implement the database, populated with test data. Create queries that retrieve t
     - Etc.
 
 
-## Testing FEATURE NAME HERE
+## testing the repport button works
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+i opend the post page and clicked the send steails to see if it would work 
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+<video src="20261020-2349-06.0291677.mp4" controls title="Title"></video>
 
 ![Placeholder](screenshots/placeholder.png)
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+i have changed the name so that it is more visable and so you know what to click
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
-
-
-## Testing FEATURE NAME HERE
-
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
-
-### Changes / Improvements
-
-Replace this text with notes any improvements you made as a result of the testing.
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+![Alt text](image.png)
 
 
-## Testing FEATURE NAME HERE
+## testing the edit and delete functions
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+I opened the posts page and clicked the edit button on one of my reports and checked whether I could change its details.i have checked that the delete button works 
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+<video src="20261021-0126-07.0669030.mp4" controls title="Title"></video>
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+i have made the delete button say are you sure so i dont delte it if i didnt want to
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+<video src="20261021-0127-41.5540819.mp4" controls title="Title"></video>
+
+
+## Testing User Login and Logout
+
+I opened the login page and entered the details for a test account and clicked the login button I checked whether I was logged in successfully. I logged out of the account 
+
+<video src="20261021-0147-56.9623974.mp4" controls title="Title"></video>
+
+### Changes / Improvements
+
+i have made it so that it will say if it doesnt recognise the right user and say incorrect and makes sure it knows the right users
+
+<video src="20261021-0149-57.1063766.mp4" controls title="Title"></video>
 
 
 ## ETC...

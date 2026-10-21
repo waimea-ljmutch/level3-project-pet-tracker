@@ -42,6 +42,13 @@ def show_signup_form():
 @app.get("/login")
 def show_login_form():
     return render_template("pages/login_page.jinja")
+
+#------------------------------------------------------------
+# messages page
+#------------------------------------------------------------
+@app.get("/messages")
+def show_messages_form():
+    return render_template("pages/message_page.jinja")
     
 # -----------------------------------------------------------
 #posts page - Show all posts
@@ -73,7 +80,7 @@ def posts():
     return render_template("pages/post_page.jinja", posts=posts)
 
 # -----------------------------------------------------------
-# Message delete handling
+# Post delete handling
 # -----------------------------------------------------------
 @app.get(f"/post/<int:id>/delete") 
 @login_required
@@ -100,7 +107,7 @@ def process_delete_post(id):
         return redirect("pages/post_page.jinja")
     
 # -----------------------------------------------------------
-# Message edit page
+# Post edit page
 # -----------------------------------------------------------
 @app.get(f"/post/<int:id>/edit")
 @login_required
