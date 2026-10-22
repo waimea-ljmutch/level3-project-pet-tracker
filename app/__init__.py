@@ -111,7 +111,7 @@ def process_delete_post(id):
 # -----------------------------------------------------------
 @app.get(f"/post/<int:id>/edit")
 @login_required
-def show_edit_message_form(id):
+def show_edit_form(id):
     with connect_db() as db:
         sql = """
             SELECT id, pet_name, pet_type, gender, location, date_lost, description, user_id FROM posts WHERE id=?
@@ -124,7 +124,25 @@ def show_edit_message_form(id):
 
         flash("Invalid post", "error")
         return redirect("/posts")
-    
+
+# -----------------------------------------------------------
+# message page
+# -----------------------------------------------------------
+@app.get(f"/post/<int:id>/message")
+@login_required
+def show_message_form(id):
+    with connect_db() as db:
+        sql = """
+            SELECT id, pet_name, pet_type, gender, location, date_lost, description, user_id FROM posts WHERE id=?
+        """
+        params = (id,)
+        post = db.execute(sql, params).fetchone()
+
+        if post and post["user_id"] == session["user"]["id"]:
+            return render_template("pages/message_page.jinja", post=post)
+
+        return redirect("/messages")
+
 # -----------------------------------------------------------
 # Handle new post
 # -----------------------------------------------------------
