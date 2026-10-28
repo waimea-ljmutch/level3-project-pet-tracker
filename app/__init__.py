@@ -9,6 +9,8 @@ from dotenv import load_dotenv
 from datetime import date
 from os import getenv
 from io import BytesIO
+import os
+from werkzeug.utils import secure_filename
 import html
 from app.helpers import *
 
@@ -51,7 +53,7 @@ def show_messages_form():
     return render_template("pages/message_page.jinja")
     
 # -----------------------------------------------------------
-#posts page - Show all posts
+# posts page - Show all posts
 # -----------------------------------------------------------
 
 @app.get("/posts")
