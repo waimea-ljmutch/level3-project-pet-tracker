@@ -62,14 +62,22 @@ body > header {
             padding: 0.5rem;
             border: solid;
             background-color: #c5c7c5;
-            border-color: #000;
+            border-color: #000000;
             border-radius: 10px ;
             border-width: 2px;
             box-shadow: var(--drop-shadow);
+        
         }
     }
-}
+/* Buttons ----------------------------------------------------- */
 
+.button {
+    text-decoration: none;
+  
+}
+a {
+    text-decoration: none;
+}
 
 /* Page Headings -----------------------------------------------*/
 
