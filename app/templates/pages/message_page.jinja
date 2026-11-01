@@ -5,11 +5,24 @@
 {% extends 'pages/_base.jinja' %}
 
 {% block content %}
+<h2>Send Message to Owner</h2>
 
-<label>
-  type to the owner
-  <textarea name="description" required></textarea>
-</label>
+<p>Pet: {{ post["pet_name"] }}</p>
 
-<button>send message</button>
+<p>
+  Owner: {{ post["firstname"] }} {{ post["lastname"] }}
+</p>
+
+<form action="/post/{{ post['id'] }}/message" method="POST">
+
+  <label for="message">Your message:</label>
+
+  <textarea name="message", required, placeholder="Type your message to the owner here..."></textarea>
+
+  <button type="submit">Send Message</button>
+
+  <a href="/posts" class="button">Cancel</a>
+
+</form>
+
 {% endblock %}

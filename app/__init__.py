@@ -51,7 +51,7 @@ def show_login_form():
 @app.get("/messages")
 def show_messages_form():
     return render_template("pages/message_page.jinja")
-    
+       
 # -----------------------------------------------------------
 # posts page - Show all posts
 # -----------------------------------------------------------
@@ -128,22 +128,35 @@ def show_edit_form(id):
         return redirect("/posts")
 
 # -----------------------------------------------------------
-# message page
+# redirects to the message page
 # -----------------------------------------------------------
-@app.get(f"/post/<int:id>/message")
+@app.get("/post/<int:id>/message")
 @login_required
 def show_message_form(id):
     with connect_db() as db:
         sql = """
-            SELECT id, pet_name, pet_type, gender, location, date_lost, description, user_id FROM posts WHERE id=?
+            SELECT
+                posts.id,
+                posts.pet_name,
+                posts.user_id,
+                users.firstname,
+                users.lastname,
+                users.username
+            FROM posts
+            JOIN users ON posts.user_id = users.id
+            WHERE posts.id = ?
         """
-        params = (id,)
-        post = db.execute(sql, params).fetchone()
+        post = db.execute(sql, (id,)).fetchone()
 
-        if post and post["user_id"] == session["user"]["id"]:
-            return render_template("pages/message_page.jinja", post=post)
+    if post:
+        if post["user_id"] == session["user"]["id"]:
+            flash("You cannot message yourself.", "error")
+            return redirect("/posts")
 
-        return redirect("/messages")
+        return render_template("pages/message_page.jinja", post=post)
+
+    flash("Pet report not found.", "error")
+    return redirect("/posts")
 
 # -----------------------------------------------------------
 # Handle new post

@@ -58,7 +58,23 @@ class PostTable:
                 ("Milo", "Cat", "boy", "Grey and white cat", "Richmond", "2026-09-12", 0)
     """
 
-
+class  MessageTable:
+    
+    NAME="messages"
+    
+    SCHEMA = """
+        CREATE TABLE messages (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        
+        )
+    
+    
+    
+    
+    
+    
+    
+    """
 #----------------------------------------------------------------------------
 # Table registry
 #----------------------------------------------------------------------------
@@ -76,7 +92,8 @@ class PostTable:
 
 TABLES = [
     UserTable,
-    PostTable
+    PostTable,
+    MessageTable
     # Add more tables here...
 ]
 
