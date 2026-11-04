@@ -1,0 +1,29 @@
+{#=====================================================
+  Home page
+=====================================================#}
+{% extends "pages/_base.jinja" %}
+
+{% block content %}
+
+<h2>My Messages</h2>
+
+{% for item in received_messages %}
+
+    <div class="pet-post">
+
+        <h3>{{ item["pet_name"] }}</h3>
+
+        <p>{{ item["message"] }}</p>
+
+    </div>
+
+{% else %}
+
+    <p>You have no messages yet.</p>
+
+{% endfor %}
+
+<a href="/posts" class="button">Back to Posts</a>
+
+{% endblock %}
+

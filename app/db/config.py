@@ -63,18 +63,20 @@ class  MessageTable:
     NAME="messages"
     
     SCHEMA = """
-        CREATE TABLE messages (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        
+    CREATE TABLE messages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sender_id INTEGER NOT NULL,
+    recipient_id INTEGER NOT NULL,
+    post_id INTEGER NOT NULL,
+    message TEXT NOT NULL
         )
-    
-    
-    
-    
-    
-    
-    
     """
+    SEED_DATA = """
+    INSERT INTO messages(sender_id, created_at, post_id, message,)
+    VALUES (5, "i want my dog back")
+           (6, "i found your lizard")
+    """
+    
 #----------------------------------------------------------------------------
 # Table registry
 #----------------------------------------------------------------------------

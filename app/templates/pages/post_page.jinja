@@ -19,11 +19,10 @@
     <p><strong>Description:</strong> {{ post.description }}</p>
     </div>
 
-    <p class="author">Posted by <strong>{{ post.firstname }} {{ post.lastname }}</strong> ({{ post.username }})</p>
-    
-    
+    <p class="author">Posted by <strong>{{ post.firstname }} {{ post.lastname }}</strong> ({{ post.username }})</p>  
+     
     <a href="/post/{{ post['id'] }}/message" class="button">
-     <button type="button">Send Message to Owner</button>
+    <button type="button">Send Message to Owner</button>
     </a>
 
 {% if session["logged_in"] and post["user_id"] == session["user"]["id"] %}

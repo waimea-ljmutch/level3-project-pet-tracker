@@ -49,13 +49,13 @@ def show_login_form():
 # messages page
 #------------------------------------------------------------
 @app.get("/messages")
+@login_required
 def show_messages_form():
-    return render_template("pages/message_page.jinja")
+    return redirect("/inbox")
        
 # -----------------------------------------------------------
 # posts page - Show all posts
 # -----------------------------------------------------------
-
 @app.get("/posts")
 def posts():
     with connect_db() as db:
@@ -126,37 +126,70 @@ def show_edit_form(id):
 
         flash("Invalid post", "error")
         return redirect("/posts")
-
 # -----------------------------------------------------------
-# redirects to the message page
+# Send message to owner
 # -----------------------------------------------------------
-@app.get("/post/<int:id>/message")
+@app.route("/post/<int:id>/message", methods=["GET", "POST"])
 @login_required
 def show_message_form(id):
+
     with connect_db() as db:
         sql = """
-            SELECT
-                posts.id,
-                posts.pet_name,
-                posts.user_id,
-                users.firstname,
-                users.lastname,
-                users.username
+            SELECT posts.id, posts.pet_name, posts.user_id,
+                   users.firstname, users.lastname
             FROM posts
             JOIN users ON posts.user_id = users.id
             WHERE posts.id = ?
         """
         post = db.execute(sql, (id,)).fetchone()
 
-    if post:
-        if post["user_id"] == session["user"]["id"]:
-            flash("You cannot message yourself.", "error")
+        if not post:
+            flash("Pet post not found", "error")
             return redirect("/posts")
 
-        return render_template("pages/message_page.jinja", post=post)
+        if request.method == "POST":
+            message = request.form.get("message", "").strip()
 
-    flash("Pet report not found.", "error")
-    return redirect("/posts")
+            if message:
+                sql = """
+                    INSERT INTO messages
+                    (sender_id, recipient_id, post_id, message)
+                    VALUES (?, ?, ?, ?)
+                """
+                params = (
+                    session["user"]["id"],
+                    post["user_id"],
+                    id,
+                    message
+                )
+                db.execute(sql, params)
+
+                flash("Message sent", "success")
+                return redirect("/posts")
+
+        return render_template("pages/message_page.jinja", post=post)
+# -----------------------------------------------------------
+# Show messages
+# -----------------------------------------------------------
+@app.get("/inbox")
+@login_required
+def show_inbox():
+
+    with connect_db() as db:
+        sql = """
+            SELECT messages.id, messages.message,
+                   posts.pet_name
+            FROM messages
+            JOIN posts ON messages.post_id = posts.id
+            ORDER BY messages.id DESC
+        """
+
+        received_messages = db.execute(sql).fetchall()
+
+    return render_template(
+        "pages/inbox_page.jinja",
+        received_messages=received_messages
+    )
 
 # -----------------------------------------------------------
 # Handle new post
